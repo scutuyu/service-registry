@@ -1,0 +1,16 @@
+# log
+logs/
+*.log
+
+# jar
+target/
+*.jar
+*.class
+
+# idea
+.idea
+*.iml
+
+# mac
+.DS_Store
+.idea/
