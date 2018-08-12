@@ -25,6 +25,7 @@ public class RegistryImpl implements Registry, Watcher, InitializingBean {
     private static final String REGISTRY_PATH = "/registry";
     private static final int SESSION_TIMEOUT = 5000;
 
+    /** 保证zookeeper是单例的，并且断开自动重连,这里没有实现 */
     private ZooKeeper zk;
 
     /** zookeeper的服务地址 */
@@ -39,9 +40,18 @@ public class RegistryImpl implements Registry, Watcher, InitializingBean {
     public RegistryImpl() {
     }
 
+    public RegistryImpl(String zkServers) {
+        logger.info("call constructor with param....");
+        boolean b = doConnect(zkServers);
+    }
+
     private boolean doConnect(String zkServers) {
         if (zkServers == null || "".equals(zkServers)) {
             logger.error("zkServers is empty...");
+            return false;
+        }
+        if (zk != null && zk.getState() != ZooKeeper.States.CLOSED) {
+            logger.info("can not create duplicate zookeeper instance");
             return false;
         }
         try {
@@ -55,10 +65,6 @@ public class RegistryImpl implements Registry, Watcher, InitializingBean {
             return false;
         }
         return true;
-    }
-
-    public RegistryImpl(String zkServers) {
-        boolean b = doConnect(zkServers);
     }
 
     @Override
@@ -94,7 +100,7 @@ public class RegistryImpl implements Registry, Watcher, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        logger.info("registry bean initialized...");
+        logger.info("this {}, registry bean initialized...", this);
         doConnect(this.servers);
     }
 }

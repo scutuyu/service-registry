@@ -166,4 +166,6 @@ maven项目，而对于web项目，需要使用插件maven-war-plugin，通过we
  
 ## 不足
 1. 该项目是我结合平时学习，以及网上的[资料](https://github.com/bill1012/microservice/tree/master/zookeeper-demo)实现的，有待实践的检验
-2. ...
+2. 目前有许多服务注册的开源实现，可以详细研究一个，然后使用之
+3. 没有实现zookeeper连接断开之后自动重连
+4. ...

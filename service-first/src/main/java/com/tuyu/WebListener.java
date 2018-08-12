@@ -18,9 +18,7 @@ import javax.servlet.ServletContext;
 import java.util.Map;
 
 /**
- * 监听器，实现ServletContextListener接口，需要在web.xml文件中配置该监听器
- * 如果实现InitializingBean接口，当bean初始化完成也可以连接zookeeper,
- * 但是此方法不能获得ServletContext对象，故不合适
+ * 监听器
  * @author tuyu
  * @date 8/10/18
  * Talk is cheap, show me the code.

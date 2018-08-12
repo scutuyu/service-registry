@@ -7,7 +7,6 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--<context:property-placeholder location="classpath:**.properties"/>-->
     <bean id="placeHolder" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="location" value="classpath:config.properties"/>
     </bean>
@@ -16,7 +15,4 @@
         <context:exclude-filter type="regex" expression="com\.tuyu\.controller\..*"/>
     </context:component-scan>
 
-    <bean id="registry" class="com.tuyu.zk.RegistryImpl">
-        <property name="servers" value="${zk.connection}"/>
-    </bean>
 </beans>
